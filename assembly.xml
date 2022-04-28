@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<assembly>
+    <id></id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <files>
+        <file>
+            <source>${project.build.directory}/${project.artifactId}-${project.version}.${project.packaging}</source>
+            <destName>custom-tool/lib/${project.artifactId}.${project.packaging}</destName>
+        </file>
+    </files>
+    <fileSets>
+        <fileSet>
+            <directory>${project.build.directory}/bin</directory>
+            <outputDirectory>custom-tool/bin</outputDirectory>
+        </fileSet>
+    </fileSets>
+    <dependencySets>
+        <!-- Добавляем в сборку свои библиотеки. Обрезаем версию -->
+        <dependencySet>
+            <outputDirectory>custom-tool/lib/</outputDirectory>
+            <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
+            <includes>
+                <include>com.bifit.ibank.std:bootstrap</include>
+            </includes>
+        </dependencySet>
+    </dependencySets>
+</assembly>
